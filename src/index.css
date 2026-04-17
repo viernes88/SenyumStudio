@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  /* Pengaturan Warna Kustom */
+  --color-surface-container: #efefd7;
+  --color-outline-variant: #bec9c9;
+  --color-surface-bright: #fbfbe2;
+  --color-surface-container-highest: #e4e4cc;
+  --color-secondary: #735c00;
+  --color-error: #ba1a1a;
+  --color-on-secondary-fixed: #241a00;
+  --color-surface-container-high: #eaead1;
+  --color-on-error-container: #93000a;
+  --color-outline: #6f7979;
+  --color-on-secondary-fixed-variant: #574500;
+  --color-surface: #fbfbe2;
+  --color-on-primary-container: #95e4e7;
+  --color-on-tertiary-container: #ffccb1;
+  --color-on-surface-variant: #3e4949;
+  --color-secondary-fixed: #ffe088;
+  --color-error-container: #ffdad6;
+  --color-surface-container-low: #f5f5dc;
+  --color-primary-container: #00686b;
+  --color-on-background: #1b1d0e;
+  --color-background: #fbfbe2;
+  --color-on-secondary: #ffffff;
+  --color-on-primary-fixed: #002021;
+  --color-on-secondary-container: #745c00;
+  --color-on-tertiary-fixed: #331200;
+  --color-primary-fixed-dim: #85d3d6;
+  --color-secondary-container: #fed65b;
+  --color-inverse-surface: #303221;
+  --color-tertiary: #6c3715;
+  --color-tertiary-fixed: #ffdbc9;
+  --color-on-tertiary-fixed-variant: #6e3816;
+  --color-primary: #004e50;
+  --color-on-surface: #1b1d0e;
+  --color-secondary-fixed-dim: #e9c349;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-tertiary: #ffffff;
+  --color-primary-fixed: #a1f0f3;
+  --color-inverse-primary: #85d3d6;
+  --color-tertiary-container: #894e2a;
+  --color-tertiary-fixed-dim: #ffb68e;
+  --color-inverse-on-surface: #f2f2d9;
+  --color-on-error: #ffffff;
+  --color-surface-tint: #03696c;
+  --color-on-primary-fixed-variant: #004f52;
+  --color-on-primary: #ffffff;
+  --color-surface-variant: #e4e4cc;
+  --color-surface-dim: #dbdcc3;
+
+  /* Pengaturan Font Kustom */
+  --font-headline: "Noto Serif", serif;
+  --font-body: "Manrope", sans-serif;
+  --font-label: "Manrope", sans-serif;
+}
+
+/* Mengembalikan pengaturan global CSS kamu */
+body {
+  /* Perhatikan perbedaannya, kita memanggil dengan var() */
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.editorial-shadow {
+  box-shadow: 0 30px 60px -12px rgba(0, 78, 80, 0.08);
+}
+
+.glass-nav {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: fit-content;
+  animation: marquee 30s linear infinite;
+}
