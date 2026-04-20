@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import BookingCalendar from "../components/BookingCalendar";
 
 const Booking = () => {
   return (
@@ -23,169 +24,28 @@ const Booking = () => {
           </p>
         </header>
 
+        {/* BUNGKUSAN GRID UTAMA (12 Kolom) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Kolom Kiri: Kalender Interaktif */}
-          <section className="lg:col-span-7 bg-surface-container-low rounded-xl p-8 shadow-sm">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-headline italic">Oktober 2024</h2>
-              <div className="flex gap-4">
-                <button className="p-2 hover:bg-surface-container-high rounded-full transition-colors">
-                  <span className="material-symbols-outlined">
-                    chevron_left
-                  </span>
-                </button>
-                <button className="p-2 hover:bg-surface-container-high rounded-full transition-colors">
-                  <span className="material-symbols-outlined">
-                    chevron_right
-                  </span>
-                </button>
-              </div>
-            </div>
+          {/* Kolom Kiri: Kalender & Legend (Makan 7 Kolom) */}
+          <section className="lg:col-span-7">
+            <BookingCalendar />
 
-            <div className="grid grid-cols-7 gap-2 mb-4">
-              <div className="text-center text-xs font-label uppercase tracking-tighter text-on-surface-variant opacity-50">
-                Min
-              </div>
-              <div className="text-center text-xs font-label uppercase tracking-tighter text-on-surface-variant opacity-50">
-                Sen
-              </div>
-              <div className="text-center text-xs font-label uppercase tracking-tighter text-on-surface-variant opacity-50">
-                Sel
-              </div>
-              <div className="text-center text-xs font-label uppercase tracking-tighter text-on-surface-variant opacity-50">
-                Rab
-              </div>
-              <div className="text-center text-xs font-label uppercase tracking-tighter text-on-surface-variant opacity-50">
-                Kam
-              </div>
-              <div className="text-center text-xs font-label uppercase tracking-tighter text-on-surface-variant opacity-50">
-                Jum
-              </div>
-              <div className="text-center text-xs font-label uppercase tracking-tighter text-on-surface-variant opacity-50">
-                Sab
-              </div>
-            </div>
-
-            <div className="grid grid-cols-7 gap-3">
-              {/* Tanggal dari bulan sebelumnya */}
-              <div className="aspect-square flex items-center justify-center text-on-surface-variant opacity-20 text-sm">
-                29
-              </div>
-              <div className="aspect-square flex items-center justify-center text-on-surface-variant opacity-20 text-sm">
-                30
-              </div>
-
-              {/* Tanggal bulan ini */}
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                1
-              </button>
-              <div className="aspect-square rounded-lg bg-primary text-white/40 flex items-center justify-center text-sm cursor-not-allowed">
-                2
-              </div>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                3
-              </button>
-              <div className="aspect-square rounded-lg bg-error-container text-on-error-container/40 flex items-center justify-center text-sm cursor-not-allowed">
-                4
-              </div>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all ring-2 ring-secondary">
-                5
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                6
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                7
-              </button>
-              <div className="aspect-square rounded-lg bg-primary text-white/40 flex items-center justify-center text-sm cursor-not-allowed">
-                8
-              </div>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                9
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                10
-              </button>
-              <div className="aspect-square rounded-lg bg-primary text-white/40 flex items-center justify-center text-sm cursor-not-allowed">
-                11
-              </div>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                12
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                13
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                14
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                15
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                16
-              </button>
-              <div className="aspect-square rounded-lg bg-primary text-white/40 flex items-center justify-center text-sm cursor-not-allowed">
-                17
-              </div>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                18
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                19
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                20
-              </button>
-              <div className="aspect-square rounded-lg bg-error-container text-on-error-container/40 flex items-center justify-center text-sm cursor-not-allowed">
-                21
-              </div>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                22
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                23
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                24
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                25
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                26
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                27
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                28
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                29
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                30
-              </button>
-              <button className="aspect-square rounded-lg bg-surface-bright flex items-center justify-center text-primary font-medium hover:ring-2 ring-secondary transition-all">
-                31
-              </button>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-6 border-t border-primary/5 pt-6">
+            {/* Legend Kalender */}
+            <div className="mt-8 flex flex-wrap gap-6 border-t border-primary/5 pt-6 justify-center lg:justify-start">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-surface-bright rounded ring-1 ring-primary/10"></div>
+                <div className="w-4 h-4 bg-[#f5f5dc] rounded ring-1 ring-[#004E50]/10"></div>
                 <span className="text-xs font-label text-on-surface-variant">
                   Tersedia
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-primary rounded"></div>
+                <div className="w-4 h-4 bg-[#004E50] rounded"></div>
                 <span className="text-xs font-label text-on-surface-variant">
                   Penuh
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-error-container rounded"></div>
+                <div className="w-4 h-4 bg-[#ffdad6] rounded"></div>
                 <span className="text-xs font-label text-on-surface-variant">
                   Maintenance
                 </span>
@@ -193,7 +53,7 @@ const Booking = () => {
             </div>
           </section>
 
-          {/* Kolom Kanan: Form Reservasi */}
+          {/* Kolom Kanan: Form Reservasi (Makan 5 Kolom) */}
           <section className="lg:col-span-5 flex flex-col gap-8">
             <div className="bg-surface-container-highest p-8 rounded-xl shadow-sm">
               <h3 className="text-xl font-headline mb-8 border-l-2 border-secondary pl-4">
@@ -205,7 +65,7 @@ const Booking = () => {
                     Nama Panggilan
                   </label>
                   <input
-                    className="w-full bg-transparent border-b border-outline/30 focus:border-primary focus:ring-0 transition-all py-2 placeholder:text-outline-variant font-body"
+                    className="w-full bg-transparent border-b border-outline/30 focus:border-primary focus:ring-0 transition-all py-2 placeholder:text-outline-variant font-body outline-none"
                     placeholder="cth: Amara"
                     type="text"
                   />
@@ -216,7 +76,7 @@ const Booking = () => {
                     Nomor WhatsApp
                   </label>
                   <input
-                    className="w-full bg-transparent border-b border-outline/30 focus:border-primary focus:ring-0 transition-all py-2 placeholder:text-outline-variant font-body"
+                    className="w-full bg-transparent border-b border-outline/30 focus:border-primary focus:ring-0 transition-all py-2 placeholder:text-outline-variant font-body outline-none"
                     placeholder="0812-xxxx-xxxx"
                     type="tel"
                   />
@@ -241,7 +101,7 @@ const Booking = () => {
                 <div className="pt-4">
                   <button
                     className="w-full bg-secondary text-on-secondary py-4 rounded-lg font-bold tracking-wide hover:bg-secondary/90 transition-all shadow-lg shadow-secondary/20 flex items-center justify-center gap-3"
-                    type="submit"
+                    type="button"
                   >
                     Konfirmasi & Lanjut ke WhatsApp
                     <span className="material-symbols-outlined text-sm">
@@ -256,7 +116,7 @@ const Booking = () => {
             <div className="relative overflow-hidden rounded-xl aspect-[16/9] group">
               <img
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                data-alt="close-up of a professional camera lens reflecting a sunlit garden with soft bokeh and golden light"
+                alt="close-up of a professional camera lens reflecting a sunlit garden with soft bokeh and golden light"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIdpJHrxkXjzht4-wCxKIIINAarehBdTtwLMGAjlcy5JKDFSt3B3bfgkvoO65m9KNOZMWtjDOcw-meC0uun_no4JRtTtokWvxt8Ac4hVDD2g8-2IVlFyHVfp83vFTMZ1I6JCXafUvxb1F48vud1ZzXqMy0Jk-E13lUJrdjFUm58FGLtsqnNuOJkeaD-jS034uKwaAxNG86Khk8h-HSDqA56E9TIzh98VN4nF3hEb6c-12gdBHOyUj80U4pxqfwVCmSU2By7SbIvbw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
