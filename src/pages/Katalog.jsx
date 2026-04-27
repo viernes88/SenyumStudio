@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const Katalog = () => {
+  // 1. State untuk menampung data dari backend
+  const [daftarPaket, setDaftarPaket] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // 2. Fungsi memanggil API Backend
+  useEffect(() => {
+    fetch("http://localhost:5000/api/paket")
+      .then((res) => res.json())
+      .then((data) => {
+        setDaftarPaket(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Gagal memuat data katalog:", err);
+        setLoading(false);
+      });
+  }, []);
   return (
     <div className="font-body antialiased">
       <Navbar />
@@ -69,168 +86,58 @@ const Katalog = () => {
 
             {/* Bento-inspired Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-              {/* Card 1: Pasfoto */}
-              <div className="group bg-surface-container-low rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    alt="Pasfoto"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUbdFd1UsNpp_9KIsKZ3fCBJvwGmBR6so9yIvsgsGA1kX9svPJMP5aXwTGuxd4H3LK4_DYZuj8y-Klh8dH6bhNZ4BzqaRLyk_tspuvqc6pwXuPuOeX3hBSTm0jVXxyuKIKjRixfRNAk48Mi97w3hgp8QwX94ruRhGymVvAm08BxJDxSF_qLeoV4qNSjFhZbvS_3nAoccqUlchHRK1APhb4iO2aL5jg9b1zZ0nj1c-N4Ta8k2MMwy6uey7IOh_-BQW7FHU1ThxgZ4I"
-                  />
-                </div>
-                <div className="p-6 md:p-8">
-                  <h3 className="font-headline italic text-xl md:text-2xl text-primary mb-2">
-                    Pasfoto
-                  </h3>
-                  <p className="font-body text-sm md:text-base text-on-surface-variant mb-6">
-                    Potret profesional untuk identitas Anda yang paling
-                    esensial.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-label font-bold text-secondary text-base md:text-lg">
-                      Rp 150.000,00
-                    </span>
-                    <button className="bg-secondary text-on-secondary px-4 py-2 rounded-lg text-xs md:text-sm font-bold hover:bg-on-secondary-fixed-variant transition-colors">
-                      Booking
-                    </button>
-                  </div>
-                </div>
-              </div>
+              {daftarPaket.map((paket, index) => {
+                // Array URL gambar fallback
+                const gambarFallback = [
+                  "https://lh3.googleusercontent.com/aida-public/AB6AXuCUbdFd1UsNpp_9KIsKZ3fCBJvwGmBR6so9yIvsgsGA1kX9svPJMP5aXwTGuxd4H3LK4_DYZuj8y-Klh8dH6bhNZ4BzqaRLyk_tspuvqc6pwXuPuOeX3hBSTm0jVXxyuKIKjRixfRNAk48Mi97w3hgp8QwX94ruRhGymVvAm08BxJDxSF_qLeoV4qNSjFhZbvS_3nAoccqUlchHRK1APhb4iO2aL5jg9b1zZ0nj1c-N4Ta8k2MMwy6uey7IOh_-BQW7FHU1ThxgZ4I",
+                  "https://lh3.googleusercontent.com/aida-public/AB6AXuAJIkGFLuPe0rvAY-67IzML0f_vVavyYuwuMbP4JUdLEhOp4XJe4KLOImGtH3YIaz61P9mNoa9Mf7iIUWlE-MF4xrYV5kZ_Qn-AXqq0VMXak2kcgxu8PBQmPt1a6H3d1RSy2SRRqramFwtl2LuaQ2c0Cy6OB1tNBxa9IwnKYbcFFfAR6ZhVuevUEB8ncbc4T2ahXHfEucaDe4zvlncANwsCsSQGrJYhD20hbkUKUVlhb4ukCWkuGptWpVwAsAeagENMbLckrgRwKtE",
+                  "https://lh3.googleusercontent.com/aida-public/AB6AXuCjKGLzEsu5PmIccIp65ty8VId7XDcT7gV7n_kkNYuH0RN0yKIt0aCjttAKngRz4n1yJo5m6GfOzrr55nNSSHepq0eXG_pfgQ2-j39xu5lKb620vYqqlqC0KHzDr8QdEaOPTjqcjxBRQxw7SjpU419KYYecre9wUcUHANazf_Q6ydGxn2Frw8S0qF5KF3oi3_XN9Uvk958GFpqiiCILfcZ197mgZASrOEoqTPqcFHcSx0m3BTtrPjlT27JfQUZF74VMH9NyuKOMWFk",
+                  "https://lh3.googleusercontent.com/aida-public/AB6AXuCXEJLQgWJxe7eX6KawnZ3TPeZ9YvhoeNa9_DLitIVAbSF4Zin656IKF5WPPgw7NrjqllEnfRkj1O8YiAKK8fLThydj7dGWX9u0tO7-6YHdY8m7iX30HYf3rm4_tuyOFNXvFNmgMN9I6PhCyI-JHEWrM_1Cz-UaG0cNNYrPl4Xdvsl2SpoRDwy2PLEq43aznOg1Xh_PHk-Fdf54Kbe7wNt2E7JY0ZkEnBu_scX0a8v8blDTw6jmj27fKaKiXlWpnxPrlZzSgAad8Ks",
+                  "https://lh3.googleusercontent.com/aida-public/AB6AXuABdC16c2JHU8YJh5_sfNQhh5kZtDI20FtG4EZ6jXNyhRK7dYtNuzzuNjwWdV0XSN2C4GUpf5dvKPmg5K4FXF5HMr1czEXvNiSdDd1cFv5X4u3Fm293EvhCGlWKD79Ns6yo5A_X826lolv2VmBzEqcVsdJUDSXFBqyhQKvXRD7m_-_HTACFmnpNUv-3snLI1x96yJ0E7f8vaqPgQLtclWbTsMRTGcUNvs1ERfofzF7GNDLEh0N6lGfrhGKG-SNt6YvFALuSDS_aqcE",
+                  "https://lh3.googleusercontent.com/aida-public/AB6AXuA_VPWqz7JNr0eDI_bAQLeE6w9uVjPbi1MJimUq5f0c44PcIePHtnU1QPIK240vAZT_EqhyIBccLhm3W_7p_Wbq5fq4uWYIGZIgNAMeFXjSnn-449IqxlZa2C_JD2vZSZOaf0f_nFcZfhxAO9esg5qSYfonkbzz55cz8RLhFDQgAn52uqHXT0hfHYtwt2bOTP62NvqmRS4O8X4P9aQb829_3OCq4uw-dCJLMkAMi8VsWele1UkbiuHqwFbEoiwfuuHz7XTm859P8GI",
+                ];
 
-              {/* Card 2: Wisuda */}
-              <div className="group bg-surface-container-low rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    alt="Wisuda"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJIkGFLuPe0rvAY-67IzML0f_vVavyYuwuMbP4JUdLEhOp4XJe4KLOImGtH3YIaz61P9mNoa9Mf7iIUWlE-MF4xrYV5kZ_Qn-AXqq0VMXak2kcgxu8PBQmPt1a6H3d1RSy2SRRqramFwtl2LuaQ2c0Cy6OB1tNBxa9IwnKYbcFFfAR6ZhVuevUEB8ncbc4T2ahXHfEucaDe4zvlncANwsCsSQGrJYhD20hbkUKUVlhb4ukCWkuGptWpVwAsAeagENMbLckrgRwKtE"
-                  />
-                </div>
-                <div className="p-6 md:p-8">
-                  <h3 className="font-headline italic text-xl md:text-2xl text-primary mb-2">
-                    Wisuda
-                  </h3>
-                  <p className="font-body text-sm md:text-base text-on-surface-variant mb-6">
-                    Rayakan pencapaian akademik dengan memori visual yang abadi.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-label font-bold text-secondary text-base md:text-lg">
-                      Rp 150.000,00
-                    </span>
-                    <button className="bg-secondary text-on-secondary px-4 py-2 rounded-lg text-xs md:text-sm font-bold hover:bg-on-secondary-fixed-variant transition-colors">
-                      Booking
-                    </button>
-                  </div>
-                </div>
-              </div>
+                // Pakai foto dari database jika ada, jika tidak pakai fallback
+                const imgUrl =
+                  paket.galeri?.[0]?.url_foto ||
+                  gambarFallback[index % gambarFallback.length];
 
-              {/* Card 3: Keluarga */}
-              <div className="group bg-surface-container-low rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    alt="Keluarga"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjKGLzEsu5PmIccIp65ty8VId7XDcT7gV7n_kkNYuH0RN0yKIt0aCjttAKngRz4n1yJo5m6GfOzrr55nNSSHepq0eXG_pfgQ2-j39xu5lKb620vYqqlqC0KHzDr8QdEaOPTjqcjxBRQxw7SjpU419KYYecre9wUcUHANazf_Q6ydGxn2Frw8S0qF5KF3oi3_XN9Uvk958GFpqiiCILfcZ197mgZASrOEoqTPqcFHcSx0m3BTtrPjlT27JfQUZF74VMH9NyuKOMWFk"
-                  />
-                </div>
-                <div className="p-6 md:p-8">
-                  <h3 className="font-headline italic text-xl md:text-2xl text-primary mb-2">
-                    Keluarga
-                  </h3>
-                  <p className="font-body text-sm md:text-base text-on-surface-variant mb-6">
-                    Kehangatan rumah dalam bingkai estetik yang penuh makna.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-label font-bold text-secondary text-base md:text-lg">
-                      Rp 150.000,00
-                    </span>
-                    <button className="bg-secondary text-on-secondary px-4 py-2 rounded-lg text-xs md:text-sm font-bold hover:bg-on-secondary-fixed-variant transition-colors">
-                      Booking
-                    </button>
+                return (
+                  <div
+                    key={paket.id_paket}
+                    className="group bg-surface-container-low rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2"
+                  >
+                    <div className="aspect-square overflow-hidden">
+                      <img
+                        alt={paket.nama_paket}
+                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                        src={imgUrl}
+                      />
+                    </div>
+                    <div className="p-6 md:p-8">
+                      <h3 className="font-headline italic text-xl md:text-2xl text-primary mb-2">
+                        {paket.nama_paket}
+                      </h3>
+                      <p className="font-body text-sm md:text-base text-on-surface-variant mb-6 min-h-[48px]">
+                        {paket.deskripsi ||
+                          "Kurasi estetika untuk momen spesial Anda."}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="font-label font-bold text-secondary text-base md:text-lg">
+                          {/* Ini adalah Baris Ajaib yang menarik harga langsung dari Database */}
+                          Rp {Number(paket.harga_paket).toLocaleString("id-ID")}
+                        </span>
+                        <Link
+                          to="/booking"
+                          className="bg-secondary text-on-secondary px-4 py-2 rounded-lg text-xs md:text-sm font-bold hover:bg-on-secondary-fixed-variant transition-colors"
+                        >
+                          Booking
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Card 4: Pernikahan */}
-              <div className="group bg-surface-container-low rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    alt="Pernikahan"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXEJLQgWJxe7eX6KawnZ3TPeZ9YvhoeNa9_DLitIVAbSF4Zin656IKF5WPPgw7NrjqllEnfRkj1O8YiAKK8fLThydj7dGWX9u0tO7-6YHdY8m7iX30HYf3rm4_tuyOFNXvFNmgMN9I6PhCyI-JHEWrM_1Cz-UaG0cNNYrPl4Xdvsl2SpoRDwy2PLEq43aznOg1Xh_PHk-Fdf54Kbe7wNt2E7JY0ZkEnBu_scX0a8v8blDTw6jmj27fKaKiXlWpnxPrlZzSgAad8Ks"
-                  />
-                </div>
-                <div className="p-6 md:p-8">
-                  <h3 className="font-headline italic text-xl md:text-2xl text-primary mb-2">
-                    Pernikahan
-                  </h3>
-                  <p className="font-body text-sm md:text-base text-on-surface-variant mb-6">
-                    Janji suci yang terekam dalam kurasi visual yang sinematik.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-label font-bold text-secondary text-base md:text-lg">
-                      Rp 150.000,00
-                    </span>
-                    <button className="bg-secondary text-on-secondary px-4 py-2 rounded-lg text-xs md:text-sm font-bold hover:bg-on-secondary-fixed-variant transition-colors">
-                      Booking
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 5: Pre-Wedding */}
-              <div className="group bg-surface-container-low rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    alt="Pre-Wedding"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuABdC16c2JHU8YJh5_sfNQhh5kZtDI20FtG4EZ6jXNyhRK7dYtNuzzuNjwWdV0XSN2C4GUpf5dvKPmg5K4FXF5HMr1czEXvNiSdDd1cFv5X4u3Fm293EvhCGlWKD79Ns6yo5A_X826lolv2VmBzEqcVsdJUDSXFBqyhQKvXRD7m_-_HTACFmnpNUv-3snLI1x96yJ0E7f8vaqPgQLtclWbTsMRTGcUNvs1ERfofzF7GNDLEh0N6lGfrhGKG-SNt6YvFALuSDS_aqcE"
-                  />
-                </div>
-                <div className="p-6 md:p-8">
-                  <h3 className="font-headline italic text-xl md:text-2xl text-primary mb-2">
-                    Pre-Wedding
-                  </h3>
-                  <p className="font-body text-sm md:text-base text-on-surface-variant mb-6">
-                    Narasi awal perjalanan cinta Anda dalam keindahan komposisi.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-label font-bold text-secondary text-base md:text-lg">
-                      Rp 150.000,00
-                    </span>
-                    <button className="bg-secondary text-on-secondary px-4 py-2 rounded-lg text-xs md:text-sm font-bold hover:bg-on-secondary-fixed-variant transition-colors">
-                      Booking
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 6: Kelulusan */}
-              <div className="group bg-surface-container-low rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    alt="Kelulusan"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_VPWqz7JNr0eDI_bAQLeE6w9uVjPbi1MJimUq5f0c44PcIePHtnU1QPIK240vAZT_EqhyIBccLhm3W_7p_Wbq5fq4uWYIGZIgNAMeFXjSnn-449IqxlZa2C_JD2vZSZOaf0f_nFcZfhxAO9esg5qSYfonkbzz55cz8RLhFDQgAn52uqHXT0hfHYtwt2bOTP62NvqmRS4O8X4P9aQb829_3OCq4uw-dCJLMkAMi8VsWele1UkbiuHqwFbEoiwfuuHz7XTm859P8GI"
-                  />
-                </div>
-                <div className="p-6 md:p-8">
-                  <h3 className="font-headline italic text-xl md:text-2xl text-primary mb-2">
-                    Kelulusan
-                  </h3>
-                  <p className="font-body text-sm md:text-base text-on-surface-variant mb-6">
-                    Momen transisi menuju masa depan yang penuh dengan harapan.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-label font-bold text-secondary text-base md:text-lg">
-                      Rp 150.000,00
-                    </span>
-                    <button className="bg-secondary text-on-secondary px-4 py-2 rounded-lg text-xs md:text-sm font-bold hover:bg-on-secondary-fixed-variant transition-colors">
-                      Booking
-                    </button>
-                  </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
 
             <div className="mt-16 md:mt-24 text-center">

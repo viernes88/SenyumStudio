@@ -44,14 +44,6 @@ const Navbar = () => {
           >
             Booking
           </Link>
-
-          {/* Menu Admin */}
-          <Link
-            to="/admin"
-            className={`transition-colors font-sans font-medium hover:opacity-80 transition-opacity duration-300 ${isActive("/admin") ? "text-[#004E50] font-bold border-b-2 border-[#735C00] pb-1" : "text-[#004E50]/70 hover:text-[#004E50]"}`}
-          >
-            Admin
-          </Link>
         </div>
 
         {/* --- TOMBOL AKSI & HAMBURGER --- */}
@@ -94,13 +86,6 @@ const Navbar = () => {
             className={`font-sans font-medium text-lg py-2 border-b border-[#004E50]/5 ${isActive("/booking") ? "text-[#735C00] font-bold" : "text-[#004E50]"}`}
           >
             Booking
-          </Link>
-          <Link
-            to="/admin"
-            onClick={() => setIsMenuOpen(false)}
-            className={`font-sans font-medium text-lg py-2 border-b border-[#004E50]/5 ${isActive("/admin") ? "text-[#735C00] font-bold" : "text-[#004E50]"}`}
-          >
-            Admin
           </Link>
 
           {/* Tombol Sesi khusus versi HP layar sangat kecil */}

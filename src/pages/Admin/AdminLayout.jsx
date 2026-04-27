@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import Logo from "../../assets/Logo.png";
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -39,16 +40,15 @@ const AdminLayout = () => {
         <div className="mb-12 px-2 flex justify-between items-center">
           <div className="flex items-center gap-3 mb-1">
             <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span
-                className="material-symbols-outlined text-surface"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                camera
-              </span>
+              <img
+                src={Logo}
+                alt="Logo SenyumStudio"
+                className="w-full h-full object-contain p-1"
+              />
             </div>
             <div>
               <h1 className="text-2xl font-serif italic text-[#004E50] dark:text-stone-100 leading-none">
-                Esensi Cahaya
+                SenyumStudio
               </h1>
               <p className="font-headline font-medium tracking-tight text-[#004E50]/60 text-xs mt-1 uppercase">
                 Editorial Studio
@@ -179,16 +179,6 @@ const AdminLayout = () => {
         </div>
 
         <div className="flex items-center gap-2 md:gap-6">
-          <div className="hidden md:flex relative items-center">
-            <input
-              className="bg-surface-container-high border-none rounded-full py-1.5 pl-10 pr-4 text-xs font-medium focus:ring-1 focus:ring-secondary/30 w-48 lg:w-64 outline-none"
-              placeholder="Cari sesi..."
-              type="text"
-            />
-            <span className="material-symbols-outlined absolute left-3 text-primary/40 text-lg">
-              search
-            </span>
-          </div>
           <div className="flex items-center gap-2 md:gap-4">
             <button className="p-2 md:p-0 text-primary/70 hover:text-[#735C00] transition-colors relative">
               <span className="material-symbols-outlined">notifications</span>

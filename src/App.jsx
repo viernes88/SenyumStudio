@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Katalog from "./pages/Katalog";
 import Booking from "./pages/Booking";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Admin/Login";
 import AdminLayout from "./pages/Admin/AdminLayout";
 import Jadwal from "./pages/Admin/Jadwal";
@@ -20,12 +21,16 @@ const App = () => {
         <Route path="/booking" element={<Booking />} />
 
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Navigate to="/admin/jadwal" replace />} />
-          <Route path="jadwal" element={<Jadwal />} />
-          <Route path="paket" element={<MasterPaket />} />
-          <Route path="laporan" element={<Laporan />} />
-          <Route path="reservasi" element={<ManajemenReservasi />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<Navigate to="/admin/jadwal" replace />} />
+            <Route path="jadwal" element={<Jadwal />} />
+            <Route path="paket" element={<MasterPaket />} />
+            <Route path="laporan" element={<Laporan />} />
+            <Route path="reservasi" element={<ManajemenReservasi />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,15 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // State tambahan untuk mengelola proses loading dan error
+  const [loading, setLoading] = useState(false);
+  const [pesanError, setPesanError] = useState("");
+
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  // FITUR PINTAR: Cek apakah user sudah login sebelumnya
+  useEffect(() => {
+    const isAuth = localStorage.getItem("isAdmin");
+    if (isAuth === "true") {
+      navigate("/admin/jadwal"); // Langsung pindah ke admin jika sudah punya kunci
+    }
+  }, [navigate]);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Simulasi login berhasil langsung ke dashboard
-    navigate("/admin/jadwal");
+    setLoading(true);
+    setPesanError(""); // Reset error setiap kali tombol ditekan
+
+    try {
+      // Mengirim request POST ke API Login Backend
+      const respons = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await respons.json();
+
+      if (data.sukses) {
+        // Jika berhasil, simpan sesi ke memori browser
+        localStorage.setItem("isAdmin", "true");
+        localStorage.setItem("namaAdmin", data.data.nama_admin);
+
+        // Arahkan ke dashboard admin
+        navigate("/admin/jadwal");
+      } else {
+        // Jika gagal (email/password salah), tampilkan pesan dari backend
+        setPesanError(data.pesan);
+      }
+    } catch (error) {
+      console.error("Gagal koneksi:", error);
+      setPesanError(
+        "Koneksi terputus. Pastikan server backend sedang menyala.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -57,6 +102,14 @@ const Login = () => {
           </div>
 
           <form onSubmit={handleLogin} className="space-y-8">
+            {/* Tempat Menampilkan Notifikasi Error */}
+            {pesanError && (
+              <div className="bg-[#ffdad6] text-[#93000a] p-4 rounded-lg text-xs tracking-wide font-bold flex items-center gap-3">
+                <span className="material-symbols-outlined text-sm">error</span>
+                {pesanError}
+              </div>
+            )}
+
             {/* Input Email */}
             <div className="group relative">
               <label className="block text-[10px] uppercase tracking-widest font-bold text-on-surface-variant/50 mb-2 group-focus-within:text-secondary transition-colors">
@@ -109,10 +162,15 @@ const Login = () => {
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full bg-primary text-white py-4 rounded-lg font-bold text-xs uppercase tracking-[0.2em] shadow-xl shadow-primary/20 hover:saturate-150 active:scale-[0.98] transition-all flex items-center justify-center gap-3"
+                disabled={loading}
+                className="w-full bg-primary text-white py-4 rounded-lg font-bold text-xs uppercase tracking-[0.2em] shadow-xl shadow-primary/20 hover:saturate-150 active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Otentikasi Akun
-                <span className="material-symbols-outlined text-sm">login</span>
+                {loading ? "Memverifikasi Kredensial..." : "Otentikasi Akun"}
+                {!loading && (
+                  <span className="material-symbols-outlined text-sm">
+                    login
+                  </span>
+                )}
               </button>
             </div>
           </form>
