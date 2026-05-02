@@ -99,12 +99,6 @@ const Jadwal = () => {
             real-time.
           </p>
         </div>
-        <div className="flex gap-4 w-full md:w-auto">
-          <button className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#003d3f] transition-colors shadow-lg shadow-primary/20">
-            <span className="material-symbols-outlined text-sm">add</span>
-            Tambah Sesi
-          </button>
-        </div>
       </header>
 
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
