@@ -93,7 +93,7 @@ const MasterPaket = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {paketData.map((paket, index) => {
             const gambarFallback = [
-              "https://lh3.googleusercontent.com/aida-public/AB6AXuBfAq41qRa8oe9JRZmesd60UcVXm8xgf2swNRdW7DhJMPCk833phCHHz_Qex1GxV9EDJyBOJtB61L_shNnO8NQAr_RjF0zJFOmfNphOWbuB7chjltl1cFwWvG8o4sEBtOahDv9AEwJD8Jc1FBvRz1pd94rFSj4b4xDQfFeH0dTYGBtRg9_tjIdCq7PJ2yH3Sv9HpayEA5nkQltI2y31BkLy3mADIlaj33O4SYexkWkr0hGzqvzY6wNgO3y3SCXDMje6jeEaQ9rguJE",
+              "/assets/wisuda.jpg",
               "https://lh3.googleusercontent.com/aida-public/AB6AXuCD93zDGUgMplLs5-PiWwDSiSaTCAeu-dt5IDvl7YJxjSb2yrO34VUfw4Lx8k4HoghINFANRBvxMHbwxefH5N1MEYH2VjXCAC9kOR331XHSmR8Y3MNhjCqxyFkp7aqd7j64lxLDuKgIv4Z4Kkrvq2KdPi5B5tDSs962Y4Bx7xO2Ok7fuQqr37oD1wL-Jc31_TLe4iSVJEnMdBEb3Pu1Zx4MQKgGYx7gkChYzOSywBgbb-GOnjWIh9ijty0cDQB-YMPozW75QxRGFYY",
               "https://lh3.googleusercontent.com/aida-public/AB6AXuDxiCkrfleXc7Y_d8l4WRSIhgh09P26su6GR7SakCMHUoIVY3AH0GKTdbpYDW4pGV_09IX4aow2oXuGMjnfhxfmuudbEz8Cmg3BfdoiyVpNDU44NbmTY0dIkZLr9PLHVyh9QmhwePDkIBxSMQ16mNZSPKusPK66h7RwqyIii2oY9YKggbQMabJJ-fcVgnL5sQZmMx-DyU_YOOIExeySAIumcnjhJRaRo4UurrEosr0G-PVC5LjbgYHY7GCGmPbfY8HGfOmcHD9Gxjk",
               "https://lh3.googleusercontent.com/aida-public/AB6AXuDBC2qlq9nl0B2Dl_QZVXvk74gDERXDsH1dae1LwldLxCuRgTvkOFuBX28w43XsaHRTkKeVhuvoFRih6L5-iGUgVxYuS98t9zVxtoJeL42o1Apv5GSWB9KzT8AUOiJiuzar-jVkmjKG4kyyTwo4PbzZ1IqWItCWHN6qWcst-itd47LPW3XVcvTTXk4nUFZtdtIkIEBcHzSRt7I2zopg7yirwbPLgKVd6FHkdBvoGHfZwnnC4uUbpXMNI6ICXS1UZ4S2XJTNIc-C4vc",

@@ -34,11 +34,11 @@ const Katalog = () => {
               <div className="w-12 h-1 bg-secondary mb-6 md:mb-8"></div>
               {/* Diperbaiki: Ukuran font dikecilkan untuk HP (text-5xl) */}
               <h1 className="font-headline italic text-5xl md:text-6xl lg:text-7xl text-primary tracking-tight leading-[1.1] mb-4 md:mb-6">
-                Menangkap Esensi Cahaya
+                Senyummu Abadi Di Sini
               </h1>
               <p className="font-body text-lg md:text-xl lg:text-2xl text-on-surface-variant max-w-lg mb-8 md:mb-10 leading-relaxed">
-                Dokumentasikan momen berharga Anda melalui lensa yang memahami
-                setiap nuansa estetika.
+                Sederhanakan caramu mengabadikan momen. Pilih jadwal, berikan
+                senyum terbaikmu, dan biarkan kami melakukan sisanya.
               </p>
               <div className="flex gap-6"></div>
             </div>
@@ -48,7 +48,7 @@ const Katalog = () => {
                   alt="Luxury Photography"
                   className="w-full h-full object-cover"
                   data-alt="Elegant indoor photography session in a sunlit studio with minimalist cream decor and soft shadows casting artistic patterns"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTgqrR1dZaHpcrpiHhXPETYjWYHGuX4JxZIXQ85QJhuTzc9gkjgnP7xOsgUWSk4w5u0U5AJaOgL79KI3zw5x0wYQyBEv1V3JIRMBlthWQdZTM1Hklyd4fc3jvQArXklW_e48092_0JfIR1pGp-3D8x5Y77Qjqyk7-a55DSaiulzltPO0JFjCo5V4hWOGQqu87iC1j-VyLeiRX-HD6OjVmZVPKX-PWQTZb75yR6CFsixcKyI0mPnonrdFTZkDlCD44HBGVMzLgyxRU"
+                  src="/assets/wisuda.jpg"
                 />
               </div>
               <div className="absolute -bottom-10 -left-10 w-32 h-48 lg:w-48 lg:h-64 rounded-xl overflow-hidden editorial-shadow -rotate-6 z-20 border-4 border-surface">
@@ -56,7 +56,7 @@ const Katalog = () => {
                   alt="Detail Shot"
                   className="w-full h-full object-cover"
                   data-alt="Close up shot of a vintage camera lens with soft golden light reflections and elegant aesthetic details"
-                  src="Logo.png"
+                  src="/assets/Logo.png"
                 />
               </div>
             </div>
@@ -89,12 +89,12 @@ const Katalog = () => {
               {daftarPaket.map((paket, index) => {
                 // Array URL gambar fallback
                 const gambarFallback = [
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuCUbdFd1UsNpp_9KIsKZ3fCBJvwGmBR6so9yIvsgsGA1kX9svPJMP5aXwTGuxd4H3LK4_DYZuj8y-Klh8dH6bhNZ4BzqaRLyk_tspuvqc6pwXuPuOeX3hBSTm0jVXxyuKIKjRixfRNAk48Mi97w3hgp8QwX94ruRhGymVvAm08BxJDxSF_qLeoV4qNSjFhZbvS_3nAoccqUlchHRK1APhb4iO2aL5jg9b1zZ0nj1c-N4Ta8k2MMwy6uey7IOh_-BQW7FHU1ThxgZ4I",
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuAJIkGFLuPe0rvAY-67IzML0f_vVavyYuwuMbP4JUdLEhOp4XJe4KLOImGtH3YIaz61P9mNoa9Mf7iIUWlE-MF4xrYV5kZ_Qn-AXqq0VMXak2kcgxu8PBQmPt1a6H3d1RSy2SRRqramFwtl2LuaQ2c0Cy6OB1tNBxa9IwnKYbcFFfAR6ZhVuevUEB8ncbc4T2ahXHfEucaDe4zvlncANwsCsSQGrJYhD20hbkUKUVlhb4ukCWkuGptWpVwAsAeagENMbLckrgRwKtE",
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuCjKGLzEsu5PmIccIp65ty8VId7XDcT7gV7n_kkNYuH0RN0yKIt0aCjttAKngRz4n1yJo5m6GfOzrr55nNSSHepq0eXG_pfgQ2-j39xu5lKb620vYqqlqC0KHzDr8QdEaOPTjqcjxBRQxw7SjpU419KYYecre9wUcUHANazf_Q6ydGxn2Frw8S0qF5KF3oi3_XN9Uvk958GFpqiiCILfcZ197mgZASrOEoqTPqcFHcSx0m3BTtrPjlT27JfQUZF74VMH9NyuKOMWFk",
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuCXEJLQgWJxe7eX6KawnZ3TPeZ9YvhoeNa9_DLitIVAbSF4Zin656IKF5WPPgw7NrjqllEnfRkj1O8YiAKK8fLThydj7dGWX9u0tO7-6YHdY8m7iX30HYf3rm4_tuyOFNXvFNmgMN9I6PhCyI-JHEWrM_1Cz-UaG0cNNYrPl4Xdvsl2SpoRDwy2PLEq43aznOg1Xh_PHk-Fdf54Kbe7wNt2E7JY0ZkEnBu_scX0a8v8blDTw6jmj27fKaKiXlWpnxPrlZzSgAad8Ks",
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuABdC16c2JHU8YJh5_sfNQhh5kZtDI20FtG4EZ6jXNyhRK7dYtNuzzuNjwWdV0XSN2C4GUpf5dvKPmg5K4FXF5HMr1czEXvNiSdDd1cFv5X4u3Fm293EvhCGlWKD79Ns6yo5A_X826lolv2VmBzEqcVsdJUDSXFBqyhQKvXRD7m_-_HTACFmnpNUv-3snLI1x96yJ0E7f8vaqPgQLtclWbTsMRTGcUNvs1ERfofzF7GNDLEh0N6lGfrhGKG-SNt6YvFALuSDS_aqcE",
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuA_VPWqz7JNr0eDI_bAQLeE6w9uVjPbi1MJimUq5f0c44PcIePHtnU1QPIK240vAZT_EqhyIBccLhm3W_7p_Wbq5fq4uWYIGZIgNAMeFXjSnn-449IqxlZa2C_JD2vZSZOaf0f_nFcZfhxAO9esg5qSYfonkbzz55cz8RLhFDQgAn52uqHXT0hfHYtwt2bOTP62NvqmRS4O8X4P9aQb829_3OCq4uw-dCJLMkAMi8VsWele1UkbiuHqwFbEoiwfuuHz7XTm859P8GI",
+                  "/assets/wisuda.jpg",
+                  "/assets/pasfoto.jpg",
+                  "/assets/keluarga.jpg",
+                  "/assets/pernikahan.jpg",
+                  "/assets/kelulusan.jpg",
+                  "/assets/prewed.jpg",
                 ];
 
                 // Pakai foto dari database jika ada, jika tidak pakai fallback
@@ -127,12 +127,6 @@ const Katalog = () => {
                           {/* Ini adalah Baris Ajaib yang menarik harga langsung dari Database */}
                           Rp {Number(paket.harga_paket).toLocaleString("id-ID")}
                         </span>
-                        <Link
-                          to="/booking"
-                          className="bg-secondary text-on-secondary px-4 py-2 rounded-lg text-xs md:text-sm font-bold hover:bg-on-secondary-fixed-variant transition-colors"
-                        >
-                          Booking
-                        </Link>
                       </div>
                     </div>
                   </div>

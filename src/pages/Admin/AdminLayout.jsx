@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import Logo from "../../assets/Logo.png";
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -41,7 +40,7 @@ const AdminLayout = () => {
           <div className="flex items-center gap-3 mb-1">
             <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
               <img
-                src={Logo}
+                src="/assets/Logo.png"
                 alt="Logo SenyumStudio"
                 className="w-full h-full object-contain p-1"
               />
@@ -178,18 +177,17 @@ const AdminLayout = () => {
           </span>
         </div>
 
-        <div className="flex items-center gap-2 md:gap-6">
+        {/* <div className="flex items-center gap-2 md:gap-6">
           <div className="flex items-center gap-2 md:gap-4">
             <button className="p-2 md:p-0 text-primary/70 hover:text-[#735C00] transition-colors relative">
               <span className="material-symbols-outlined">notifications</span>
               <span className="absolute top-1 right-1 md:top-0 md:right-0 w-2 h-2 bg-secondary rounded-full border border-surface"></span>
             </button>
           </div>
-        </div>
+        </div> */}
       </header>
 
       {/* 4. MAIN CONTENT AREA */}
-      {/* Di HP: Tidak ada margin kiri (ml-0), Di PC: Ada margin kiri selebar Sidebar (lg:ml-72) */}
       <main className="ml-0 lg:ml-72 pt-16 min-h-screen bg-surface-container-low transition-all duration-300">
         {/* Supaya konten di HP tidak menabrak batas layar, kita berikan padding p-4 untuk layar kecil */}
         <div className="p-4 lg:p-0">

@@ -7,6 +7,8 @@ import BookingCalendar from "../components/BookingCalendar";
 const Booking = () => {
   const navigate = useNavigate();
 
+  const nomorAdmin = import.meta.env.VITE_WHATSAPP_ADMIN;
+
   const [daftarPaket, setDaftarPaket] = useState([]);
 
   // --- FITUR BARU: State untuk menampung jam yang sudah penuh ---
@@ -44,7 +46,7 @@ const Booking = () => {
       .catch((err) => console.error("Gagal mengambil paket:", err));
   }, []);
 
-  // --- FITUR BARU: Efek pencarian jadwal kosong otomatis ---
+  // --- FITUR Efek pencarian jadwal kosong otomatis ---
   useEffect(() => {
     if (formData.tanggal_booking) {
       // Panggil API Backend yang kita buat sebelumnya
@@ -82,7 +84,7 @@ const Booking = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validasi tambahan: Pastikan klien sudah mengklik salah satu tombol jam
+    // 1. Validasi Jam
     if (!formData.jam_booking) {
       setPesan({
         tipe: "error",
@@ -93,6 +95,14 @@ const Booking = () => {
 
     setLoading(true);
     setPesan({ tipe: "", teks: "" });
+
+    // Cari nama paket untuk teks WA agar lebih informatif
+    const paketTerpilih = daftarPaket.find(
+      (p) => p.id_paket === parseInt(formData.id_paket),
+    );
+    const namaPaketFix = paketTerpilih
+      ? paketTerpilih.nama_paket
+      : "Paket Pilihan";
 
     const payload = {
       nama_pelanggan: formData.nama_pelanggan,
@@ -114,10 +124,31 @@ const Booking = () => {
       const data = await respons.json();
 
       if (respons.ok) {
+        // --- PROSES WHATSAPP MENGGUNAKAN NOMOR DARI .ENV ---
+        const templatePesan = encodeURIComponent(
+          `*KONFIRMASI BOOKING - SENYUMSTUDIO* 📸\n\n` +
+            `Halo Admin, saya baru saja melakukan reservasi.\n\n` +
+            `*Detail:* \n` +
+            `👤 Nama: ${formData.nama_pelanggan}\n` +
+            `📦 Paket: ${namaPaketFix}\n` +
+            `📅 Tanggal: ${formData.tanggal_booking}\n` +
+            `⏰ Jam: ${formData.jam_booking}\n\n` +
+            `Mohon instruksi selanjutnya. Terima kasih!`,
+        );
+
+        // Memanggil nomorAdmin yang diambil dari import.meta.env
+        const urlWA = `https://wa.me/${nomorAdmin}?text=${templatePesan}`;
+
+        // Buka tab WhatsApp
+        window.open(urlWA, "_blank");
+        // ---------------------------------------------------
+
         setPesan({
           tipe: "sukses",
-          teks: "Reservasi berhasil dicatat ke sistem!",
+          teks: "Reservasi berhasil dicatat! Mengalihkan ke WhatsApp...",
         });
+
+        // Reset form setelah berhasil
         setFormData({
           nama_pelanggan: "",
           nomor_wa: "",
@@ -126,9 +157,9 @@ const Booking = () => {
           id_paket: "",
           harga_paket: 0,
         });
-        setTimeout(() => navigate("/"), 3000);
+
+        setTimeout(() => navigate("/"), 4000);
       } else {
-        // Akan menangkap error jika jam tiba-tiba sudah diambil orang lain saat menekan tombol submit
         setPesan({
           tipe: "error",
           teks: data.pesan || "Terjadi kesalahan sistem.",
@@ -137,7 +168,7 @@ const Booking = () => {
     } catch (error) {
       setPesan({
         tipe: "error",
-        teks: "Koneksi terputus. Pastikan server backend menyala.",
+        teks: "Koneksi terputus. Pastikan server menyala.",
       });
     } finally {
       setLoading(false);
